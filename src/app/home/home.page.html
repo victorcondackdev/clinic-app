@@ -1,20 +1,27 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title">Clínica Canes</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-list lines="full">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+
+    <ion-item *ngFor="let data of dadosPressao">
+      <ion-label>Dados de Pressão</ion-label>
+      <ion-button color="primary" (click)="exibirDados()">Exibir</ion-button>
+      <ion-label >Dia: {{ data.dia }}, Hora: {{ data.hora }}, Pressão Máxima: {{ data.pressaoMax }}, Pressão Mínima: {{ data.pressaoMin }}</ion-label>
+      <ion-button expand="full" color="danger" (click)="apagarInformacoes(data.id)">Apagar Informações</ion-button>
+      <ion-button expand="full" color="warning" (click)="alterarValor(data.id)">Alterar Valor</ion-button>
+
+    </ion-item>
+  </ion-list>
+
+  <ion-item>
+    <ion-label>Média Máxima: {{ mediaMaxima || 'N/A' }}</ion-label>
+    <ion-label>Média Mínima: {{ mediaMinima || 'N/A' }}</ion-label>
+  </ion-item>
+
+  <ion-button expand="full" color="success" (click)="adicionarDados()">Adicionar Dados</ion-button>
 </ion-content>
